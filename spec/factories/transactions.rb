@@ -4,7 +4,8 @@ FactoryBot.define do
     subject {Faker::Name.first_name}
     amount {Faker::Number.decimal}
     customer_id {Faker::Number.non_zero_digit}
-    currency_code {Money::Currency.table.values.map{|c| c[:iso_code] }.shuffle.first}
+    currency_code {Money::Currency.table.values.map{|c| c[:iso_code] }.reject { |c| c.empty? }.shuffle.first}
+    currency_symbol {Money::Currency.table.values.map{|c| c[:symbol] }.reject { |c| c.empty? }.shuffle.first}
   end
 
   # factory :sign_up_step_two do

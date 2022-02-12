@@ -5,9 +5,10 @@ describe "post a transaction route", :type => :request do
     @subject = Faker::Name.first_name
     @amount = Faker::Number.decimal
     @currency_code = Money::Currency.table.values.map{|c| c[:iso_code] }.shuffle.first
+    @currency_symbol = Money::Currency.table.values.map{|c| c[:symbol] }.shuffle.first
     @customer_id = Faker::Number.non_zero_digit
 
-    post '/transactions', params: {transaction: {subject: @subject,amount: @amount,customer_id: @customer_id,currency: @currency}}.to_json
+    post '/transactions', params: {transaction: {subject: @subject,amount: @amount,customer_id: @customer_id,currency_code: @currency_code,currency_symbol: @currency_symbol}}.to_json
   end
 
   it 'returns the transaction subject' do
