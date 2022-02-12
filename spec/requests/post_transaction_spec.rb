@@ -4,7 +4,7 @@ describe "post a transaction route", :type => :request do
   before do
     @subject = Faker::Name.first_name
     @amount = Faker::Number.decimal
-    @currency = Money::Currency.table.values.map{|c| c[:iso_code] }.shuffle.first
+    @currency_code = Money::Currency.table.values.map{|c| c[:iso_code] }.shuffle.first
     @customer_id = Faker::Number.non_zero_digit
 
     post '/transactions', params: {transaction: {subject: @subject,amount: @amount,customer_id: @customer_id,currency: @currency}}.to_json
@@ -22,8 +22,8 @@ describe "post a transaction route", :type => :request do
     expect(JSON.parse(response.body)['customer_id']).to eq(@customer_id)
   end
 
-  it 'returns the transaction\'s currency' do
-    expect(JSON.parse(response.body)['currency']).to eq(@currency)
+  it 'returns the transaction\'s currency_code' do
+    expect(JSON.parse(response.body)['currency_code']).to eq(@currency_code)
   end
 
   it 'returns a created status' do

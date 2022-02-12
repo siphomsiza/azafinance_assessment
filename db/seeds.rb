@@ -6,5 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 5.times do
-  Transaction.create(subject: Faker::Name.first_name, amount: Faker::Number.decimal ,customer_id: Faker::Number.non_zero_digit ,currency: Money::Currency.table.values.map{|c| c[:iso_code] }.shuffle.first)
+  Transaction.create(subject: Faker::Name.first_name, amount: Faker::Number.decimal ,customer_id: Faker::Number.non_zero_digit ,currency_code: Money::Currency.table.values.map{|c| c[:iso_code] }.shuffle.first,currency_symbol: Money::Currency.table.values.map{|c| c[:symbol] }.shuffle.first)
 end

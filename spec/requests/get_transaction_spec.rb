@@ -11,6 +11,6 @@ describe "PUT /transactions/:id" do
     expect(Transaction.find(@transaction.id).subject).to eq(@transaction.subject)
     expect(Transaction.find(@transaction.id).amount).to eq(@transaction.amount)
     expect(Transaction.find(@transaction.id).customer_id).to eq(@transaction.customer_id)
-    expect(Transaction.find(@transaction.id).currency).to eq(@transaction.currency)
+    expect(Transaction.find(@transaction.id).currency_code).to eq(@transaction.currency_code)
   end
 end

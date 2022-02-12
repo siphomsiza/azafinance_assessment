@@ -4,7 +4,8 @@ class CreateTransactions < ActiveRecord::Migration[6.1]
       t.string :subject
       t.decimal :amount , precision: 10, scale: 2
       t.references :customer
-      t.string :currency,:limit => 3
+      t.string :currency_code,:limit => 3
+      t.string :currency_symbol,:limit => 5
       t.timestamps
     end
   end

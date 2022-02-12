@@ -15,19 +15,12 @@ ActiveRecord::Schema.define(version: 2022_02_09_180025) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "customers", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "customer_no"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "transactions", force: :cascade do |t|
     t.string "subject"
     t.decimal "amount", precision: 10, scale: 2
     t.bigint "customer_id"
-    t.string "currency", limit: 3
+    t.string "currency_code", limit: 3
+    t.string "currency_symbol", limit: 5
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_transactions_on_customer_id"
