@@ -9,9 +9,11 @@ describe "PUT /transactions/:id" do
 
     expect(response.status).to eq(200)
     expect(Transaction.find(@transaction.id).subject).to eq(@transaction.subject)
-    expect(Transaction.find(@transaction.id).amount).to eq(@transaction.amount)
+    expect(Transaction.find(@transaction.id).input_amount).to eq(@transaction.input_amount)
     expect(Transaction.find(@transaction.id).customer_id).to eq(@transaction.customer_id)
-    expect(Transaction.find(@transaction.id).currency_code).to eq(@transaction.currency_code)
-    expect(Transaction.find(@transaction.id).currency_symbol).to eq(@transaction.currency_symbol)
+    expect(Transaction.find(@transaction.id).input_currency_code).to eq(@transaction.input_currency_code)
+    expect(Transaction.find(@transaction.id).input_currency_symbol).to eq(@transaction.input_currency_symbol)
+    expect(Transaction.find(@transaction.id).output_currency_code).to eq(@transaction.output_currency_code)
+    expect(Transaction.find(@transaction.id).output_currency_symbol).to eq(@transaction.output_currency_symbol)
   end
 end

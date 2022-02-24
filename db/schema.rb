@@ -17,13 +17,13 @@ ActiveRecord::Schema.define(version: 2022_02_09_180025) do
 
   create_table "transactions", force: :cascade do |t|
     t.string "subject"
-    t.decimal "amount", precision: 10, scale: 2
+    t.decimal "input_amount", precision: 10, scale: 2
+    t.decimal "output_amount", precision: 10, scale: 2
     t.bigint "customer_id"
-    t.string "currency_code", limit: 3
-    t.string "currency_symbol", limit: 5
+    t.string "input_currency_code", limit: 3
+    t.string "input_currency_symbol", limit: 5
     t.string "output_currency_code", limit: 3
     t.string "output_currency_symbol", limit: 5
-    t.decimal "output_amount", precision: 10, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_transactions_on_customer_id"
