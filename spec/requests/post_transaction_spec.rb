@@ -27,6 +27,10 @@ describe "post a transaction route", :type => :request do
     expect(JSON.parse(response.body)['currency_code']).to eq(@currency_code)
   end
 
+  it 'returns the transaction\'s currency_symbol' do
+    expect(JSON.parse(response.body)['currency_symbol']).to eq(@currency_symbol)
+  end
+
   it 'returns a created status' do
     expect(response).to have_http_status(:created)
   end
