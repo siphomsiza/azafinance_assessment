@@ -8,7 +8,7 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new
-    @transaction.assign_attributes(@json['transaction'])
+    @transaction.assign_attributes(transaction_params)
     if @transaction.save
      render json: @transaction, status: 201
     else
@@ -29,6 +29,13 @@ class TransactionsController < ApplicationController
      end
    end
 
+   def transaction_params
+      params = ActionController::Parameters.new(@json)
+      params.fetch(:transaction, {}).permit(:subject,:input_amount,:customer_id,
+                                            :input_currency_code,:input_currency_symbol,
+                                            :output_currency_code,:output_currency_symbol,
+                                            :output_amount)
+   end
 
    def parse_request
      begin
